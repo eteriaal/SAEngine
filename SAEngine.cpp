@@ -61,7 +61,7 @@ AudioEngine::~AudioEngine() noexcept {
         std::lock_guard<std::mutex> lock(m_sourcesMutex);
         for (auto source : m_activeSources) {
             source->stop();
-            source->clearBuffers();
+            // source->clearBuffers();       clearBuffers() is not needed, stop() already does that.
         }
         m_activeSources.clear();
     }
@@ -185,7 +185,7 @@ AudioSource::AudioSource(AudioEngine* engine) : m_engine(engine) {
 
 AudioSource::~AudioSource() noexcept {
     stop();
-    clearBuffers();
+    // clearBuffers();     clearBuffers() is not needed, stop() already does that.
 
     alDeleteSources(1, &m_source);
     alDeleteBuffers(static_cast<ALsizei>(m_buffers.size()), m_buffers.data());

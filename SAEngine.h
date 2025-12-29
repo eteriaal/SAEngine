@@ -8,7 +8,7 @@
 
 #pragma once
 
-#define SAE_DEBUG
+// #define SAE_DEBUG
 
 #include <string>
 #include <atomic>
